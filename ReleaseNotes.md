@@ -1,4 +1,4 @@
-![TrafficSignals.ai](resources/TrafficSignals-ai.png)
+![TrafficSignals.ai](https://trafficsignals164508950.files.wordpress.com/2021/03/cropped-momenteo-profile.png)
 
 # Vision Library Release Notes
 
