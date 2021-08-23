@@ -50,7 +50,7 @@ make -jXX # where XX is the number of available cores
 
 ### Source Documentation 
 
-To automatically create source documentation from the comments in the source files complete the following steps from the home directory of the project:
+To automatically create source documentation from the comments in the source files execute the following steps from the home directory of the project:
 
 ```Bash
 sudo apt install doxygen # if not already installed...
