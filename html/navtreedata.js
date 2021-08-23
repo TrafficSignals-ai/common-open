@@ -25,15 +25,12 @@
 var NAVTREE =
 [
   [ "TrafficSignals.ai Common Open Source Library", "index.html", [
-    [ "ReleaseNotes", "md_ReleaseNotes.html", [
-      [ "Vision Library Release Notes", "md_ReleaseNotes.html#autotoc_md6", [
-        [ "Trunk", "md_ReleaseNotes.html#autotoc_md7", null ]
-      ] ]
-    ] ],
     [ "Readme", "md_Readme.html", [
-      [ "Common Library for Open Source", "md_Readme.html#autotoc_md8", [
-        [ "Libraries Used", "md_Readme.html#autotoc_md9", [
-          [ "Boost.Asio", "md_Readme.html#autotoc_md10", null ]
+      [ "Common Library for Open Source", "md_Readme.html#autotoc_md6", [
+        [ "Libraries Used", "md_Readme.html#autotoc_md7", [
+          [ "Boost.Asio", "md_Readme.html#autotoc_md8", null ],
+          [ "Install Pre-requisites", "md_Readme.html#autotoc_md9", null ],
+          [ "Install", "md_Readme.html#autotoc_md10", null ]
         ] ],
         [ "Road Map", "md_Readme.html#autotoc_md11", [
           [ "v0.1 Now", "md_Readme.html#autotoc_md12", null ],
@@ -41,6 +38,11 @@ var NAVTREE =
           [ "v0.3 Future", "md_Readme.html#autotoc_md14", null ]
         ] ],
         [ "Technical Documentation", "md_Readme.html#autotoc_md15", null ]
+      ] ]
+    ] ],
+    [ "ReleaseNotes", "md_ReleaseNotes.html", [
+      [ "Vision Library Release Notes", "md_ReleaseNotes.html#autotoc_md16", [
+        [ "Trunk", "md_ReleaseNotes.html#autotoc_md17", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [

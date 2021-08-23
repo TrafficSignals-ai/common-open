@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/console.dir/main.cpp.o"
-  "CMakeFiles/console.dir/main.cpp.o.d"
   "console"
   "console.pdb"
 )

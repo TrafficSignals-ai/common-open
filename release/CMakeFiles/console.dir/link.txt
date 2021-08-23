@@ -1,1 +1,1 @@
-/usr/bin/c++  -pthread CMakeFiles/console.dir/main.cpp.o -o console  -Boost libtsai-common-open.a 
+/usr/bin/c++   -pthread   CMakeFiles/console.dir/main.cpp.o  -o console  -Boost libtsai-common-open.a 

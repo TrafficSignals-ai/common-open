@@ -14,6 +14,30 @@ Boost.Asio is a cross-platform C++ library for network and low-level I/O program
 
 [Official Page](https://www.boost.org/doc/libs/1_76_0/doc/html/boost_asio.html) - [Licence](BOOST/BOOST_LICENSE_1_0.txt) - [Licence FAQ](https://www.boost.org/users/license.html#FAQ) - [Documentation](https://www.boost.org/doc/libs/1_76_0/doc/html/boost_asio/reference.html)
 
+### Install Pre-requisites
+
+Please install the following libraries. Note, all are required, even if only some or one part of the libraries are used. 
+
+```Bash
+sudo apt update
+sudo apt upgrade
+
+sudo apt install libboost-all-dev # Boost.Asio
+
+```
+
+### Install
+
+Download the repository from source control and navigate to the directory. Then execute the following: 
+
+```Bash
+mkdir release && cd release
+cmake ..
+make -jXX # where XX is the number of available cores 
+```
+
+
+
 ## Road Map
 
 ### v0.1 Now

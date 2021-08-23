@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/tsai-common-open.dir/BOOST/ConnectionTCP.cpp.o"
-  "CMakeFiles/tsai-common-open.dir/BOOST/ConnectionTCP.cpp.o.d"
   "libtsai-common-open.a"
   "libtsai-common-open.pdb"
 )

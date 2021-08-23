@@ -1,7 +1,7 @@
 #sudo apt install libasio-dev
 #sudo apt install libblkid-dev e2fslibs-dev libboost-all-dev libaudit-dev
 
-cmake_minimum_required(VERSION 3.18)
+cmake_minimum_required(VERSION 3.16)
 include(CMakeDependentOption)
 
 set(LIB_NAME "tsai-common-open")
@@ -38,7 +38,7 @@ message(STATUS "PkgConfig found and added.")
 
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREAD ON)
-find_package(Boost 1.74.0 REQUIRED COMPONENTS system thread regex)
+find_package(Boost 1.71.0 REQUIRED COMPONENTS system thread regex)
 if(Boost_FOUND)
   INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
   LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})

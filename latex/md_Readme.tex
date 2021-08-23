@@ -1,11 +1,32 @@
-\hypertarget{md_Readme_autotoc_md8}{}\doxysection{Common Library for Open Source}\label{md_Readme_autotoc_md8}
-This library contains source code which is derrived directly from open source software.
+\hypertarget{md_Readme_autotoc_md6}{}\doxysection{Common Library for Open Source}\label{md_Readme_autotoc_md6}
+This library contains source code which is derived directly from open source software.
 
-No application logic should be applied to this module.\hypertarget{md_Readme_autotoc_md9}{}\doxysubsection{Libraries Used}\label{md_Readme_autotoc_md9}
-\hypertarget{md_Readme_autotoc_md10}{}\doxysubsubsection{Boost.\+Asio}\label{md_Readme_autotoc_md10}
+No application logic should be applied to this module.\hypertarget{md_Readme_autotoc_md7}{}\doxysubsection{Libraries Used}\label{md_Readme_autotoc_md7}
+\hypertarget{md_Readme_autotoc_md8}{}\doxysubsubsection{Boost.\+Asio}\label{md_Readme_autotoc_md8}
 Boost.\+Asio is a cross-\/platform C++ library for network and low-\/level I/O programming that provides developers with a consistent asynchronous model using a modern C++ approach. The source code can be found in the /\+BOOST directory and is derived from the examples provided.
 
-\href{https://www.boost.org/doc/libs/1_76_0/doc/html/boost_asio.html}{\texttt{ Official Page}} -\/ \href{BOOST/BOOST_LICENSE_1_0.txt}{\texttt{ Licence}} -\/ \href{https://www.boost.org/users/license.html\#FAQ}{\texttt{ Licence FAQ}} -\/ \href{https://www.boost.org/doc/libs/1_76_0/doc/html/boost_asio/reference.html}{\texttt{ Documentation}}\hypertarget{md_Readme_autotoc_md11}{}\doxysubsection{Road Map}\label{md_Readme_autotoc_md11}
+\href{https://www.boost.org/doc/libs/1_76_0/doc/html/boost_asio.html}{\texttt{ Official Page}} -\/ \href{BOOST/BOOST_LICENSE_1_0.txt}{\texttt{ Licence}} -\/ \href{https://www.boost.org/users/license.html\#FAQ}{\texttt{ Licence FAQ}} -\/ \href{https://www.boost.org/doc/libs/1_76_0/doc/html/boost_asio/reference.html}{\texttt{ Documentation}}\hypertarget{md_Readme_autotoc_md9}{}\doxysubsubsection{Install Pre-\/requisites}\label{md_Readme_autotoc_md9}
+Please install the following libraries. Note, all are required, even if only some or one part of the libraries are used.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo apt update}
+\DoxyCodeLine{sudo apt upgrade}
+\DoxyCodeLine{}
+\DoxyCodeLine{sudo apt install libboost-\/all-\/dev \# Boost.Asio}
+
+\end{DoxyCode}
+\hypertarget{md_Readme_autotoc_md10}{}\doxysubsubsection{Install}\label{md_Readme_autotoc_md10}
+Download the repository from source control and navigate to the directory. Then execute the following\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mkdir release \&\& cd release}
+\DoxyCodeLine{cmake ..}
+\DoxyCodeLine{make -\/jXX \# where XX is the number of available cores }
+
+\end{DoxyCode}
+\hypertarget{md_Readme_autotoc_md11}{}\doxysubsection{Road Map}\label{md_Readme_autotoc_md11}
 \hypertarget{md_Readme_autotoc_md12}{}\doxysubsubsection{v0.\+1 Now}\label{md_Readme_autotoc_md12}
 \hypertarget{md_Readme_autotoc_md13}{}\doxysubsubsection{v0.\+2 Next}\label{md_Readme_autotoc_md13}
 \hypertarget{md_Readme_autotoc_md14}{}\doxysubsubsection{v0.\+3 Future}\label{md_Readme_autotoc_md14}
