@@ -1,4 +1,0 @@
-/home/rthurbin/src/trafficsignals-ai/common-open/release/CMakeFiles/rebuild_cache.dir
-/home/rthurbin/src/trafficsignals-ai/common-open/release/CMakeFiles/edit_cache.dir
-/home/rthurbin/src/trafficsignals-ai/common-open/release/CMakeFiles/console.dir
-/home/rthurbin/src/trafficsignals-ai/common-open/release/CMakeFiles/tsai-common-open.dir
