@@ -16,9 +16,7 @@ TrafficSignals.ai vision is to challenge impossible positions and provide an inn
 
 This library contains source code which is derived directly from open source software. 
 
-## Libraries Used
-
-### Boost.Asio
+## Boost.Asio
 
 Boost.Asio is a cross-platform C++ library for network and low-level I/O programming that provides developers with a consistent asynchronous model using a modern C++ approach. The source code can be found in the /BOOST directory and is derived from the examples provided. 
 
