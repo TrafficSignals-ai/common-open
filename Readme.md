@@ -14,7 +14,7 @@ For more information, visit: [TrafficSignals.ai](http://TrafficSignals.ai)
 
 # Common Library for Open Source
 
-This library contains source code which is derived directly from open source software. Note, these instructions are for Ubuntu 20.04 LTS, other platforms may vary. 
+This library contains source code which is derived directly from open source software. Note, these instructions are for Ubuntu 20.04 LTS, other platforms may vary. It is also assumed gcc, g++ and cmake, pkconfig and other common development environment requirements are present.  
 
 ## Pre-requisites
 
