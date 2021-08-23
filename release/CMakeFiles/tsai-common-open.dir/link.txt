@@ -1,0 +1,2 @@
+/usr/bin/ar qc libtsai-common-open.a CMakeFiles/tsai-common-open.dir/BOOST/ConnectionTCP.cpp.o
+/usr/bin/ranlib libtsai-common-open.a

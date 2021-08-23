@@ -1,0 +1,88 @@
+\hypertarget{classServerTCP}{}\doxysection{Server\+TCP Class Reference}
+\label{classServerTCP}\index{ServerTCP@{ServerTCP}}
+
+
+Represents a server ready to receive TCP connections.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classServerTCP_a8ee0102930b1d9d44e122be9b61f1b2e}{Server\+TCP}} (boost\+::asio\+::io\+\_\+context \&io\+\_\+context)
+\begin{DoxyCompactList}\small\item\em A constructor for the server. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classServerTCP_a445cb1ad97380323ede19d8b9ec5d53f}{$\sim$\+Server\+TCP}} ()
+\begin{DoxyCompactList}\small\item\em A destructor for the server. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classServerTCP_a677023fa1e8784bf482542a613be5a2b}{Send\+Message}} (std\+::string message)
+\begin{DoxyCompactList}\small\item\em Send a message to all connected clients. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a server ready to receive TCP connections. 
+
+\hypertarget{classServerTCP_autotoc_md2}{}\doxysubsubsection{Responsability}\label{classServerTCP_autotoc_md2}
+Control connections by clients.\hypertarget{classServerTCP_autotoc_md3}{}\doxysubsubsection{Collaboration}\label{classServerTCP_autotoc_md3}
+Used by a connection manager to manage connections.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classConnectionTCP}{Connection\+TCP()}} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classServerTCP_a8ee0102930b1d9d44e122be9b61f1b2e}\label{classServerTCP_a8ee0102930b1d9d44e122be9b61f1b2e}} 
+\index{ServerTCP@{ServerTCP}!ServerTCP@{ServerTCP}}
+\index{ServerTCP@{ServerTCP}!ServerTCP@{ServerTCP}}
+\doxysubsubsection{\texorpdfstring{ServerTCP()}{ServerTCP()}}
+{\footnotesize\ttfamily Server\+TCP\+::\+Server\+TCP (\begin{DoxyParamCaption}\item[{boost\+::asio\+::io\+\_\+context \&}]{io\+\_\+context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+A constructor for the server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em io\+\_\+context} & the server context in which to create the connection. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classServerTCP_a445cb1ad97380323ede19d8b9ec5d53f}\label{classServerTCP_a445cb1ad97380323ede19d8b9ec5d53f}} 
+\index{ServerTCP@{ServerTCP}!````~ServerTCP@{$\sim$ServerTCP}}
+\index{````~ServerTCP@{$\sim$ServerTCP}!ServerTCP@{ServerTCP}}
+\doxysubsubsection{\texorpdfstring{$\sim$ServerTCP()}{~ServerTCP()}}
+{\footnotesize\ttfamily Server\+TCP\+::$\sim$\+Server\+TCP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+A destructor for the server. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classServerTCP_a677023fa1e8784bf482542a613be5a2b}\label{classServerTCP_a677023fa1e8784bf482542a613be5a2b}} 
+\index{ServerTCP@{ServerTCP}!SendMessage@{SendMessage}}
+\index{SendMessage@{SendMessage}!ServerTCP@{ServerTCP}}
+\doxysubsubsection{\texorpdfstring{SendMessage()}{SendMessage()}}
+{\footnotesize\ttfamily Server\+TCP\+::\+Send\+Message (\begin{DoxyParamCaption}\item[{std\+::string}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Send a message to all connected clients. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & the text desired to be sent to all connected parties. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+BOOST/Connection\+TCP.\+cpp\end{DoxyCompactItemize}

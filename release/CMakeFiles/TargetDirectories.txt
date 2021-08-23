@@ -1,0 +1,4 @@
+/home/rthurbin/src/ChatServer/release/CMakeFiles/rebuild_cache.dir
+/home/rthurbin/src/ChatServer/release/CMakeFiles/edit_cache.dir
+/home/rthurbin/src/ChatServer/release/CMakeFiles/console.dir
+/home/rthurbin/src/ChatServer/release/CMakeFiles/tsai-common-open.dir
