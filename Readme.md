@@ -10,7 +10,7 @@ Our solution is built on the very foundation that in 5 years’ time we may have
 
 TrafficSignals.ai vision is to challenge impossible positions and provide an innovative and deeply integrated approach to intelligence around big data, internet of things and other sources of data. The business strives to be first to market for product innovations, capability and business needs fulfilment. Our focus is on enabling clients to reduce revenue spends whilst increasing quality of service through machine learning and artificial intelligence.
 
-[TrafficSignals.ai](http://TrafficSignals.ai)
+For more informatio, visit: [TrafficSignals.ai](http://TrafficSignals.ai)
 
 # Common Library for Open Source
 
