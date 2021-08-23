@@ -22,7 +22,7 @@ Boost.Asio is a cross-platform C++ library for network and low-level I/O program
 
 [Official Page](https://www.boost.org/doc/libs/1_76_0/doc/html/boost_asio.html) - [Licence](BOOST/BOOST_LICENSE_1_0.txt) - [Licence FAQ](https://www.boost.org/users/license.html#FAQ) - [Documentation](https://www.boost.org/doc/libs/1_76_0/doc/html/boost_asio/reference.html)
 
-### Install Pre-requisites
+### Pre-requisites
 
 Please install the following libraries. Note, all are required, even if only some or one part of the libraries are used. 
 
@@ -34,11 +34,15 @@ sudo apt install libboost-all-dev # Boost.Asio
 
 ```
 
-### Install
+### Compile
 
-Download the repository from source control and navigate to the directory. Then execute the following: 
+To download and compile to repository from source control, execute the following: 
 
 ```Bash
+mkdir -p ~/src/trafficsignals-ai
+cd ~/src/trafficsignals-ai
+git clone https://github.com/TrafficSignals-ai/common-open.git
+cd common-open
 mkdir release && cd release
 cmake ..
 make -jXX # where XX is the number of available cores 
@@ -54,15 +58,6 @@ doxygen
 ```
 
 Files will now have been created in the ```/html``` and ```/latex``` directories. ```/html/index.html``` is the home page for the documentation.
-
-
-## Road Map
-
-### v0.1 Now
- 
-### v0.2 Next
-
-### v0.3 Future
 
 ## Technical Documentation
 
