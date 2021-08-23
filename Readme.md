@@ -4,11 +4,7 @@
 
 Revolutionising transport networks utilising artificial intelligence. 
 
-Thanks to rapid advances in cloud, big data and analytics, and the falling cost of these new technologies, our traffic signals platform, powered by artificial intelligence, is creating the next wave of disruption, growth and breakthrough innovation across the globe. Our platforms bring together communities of customers and partners, including developers and are enabling new levels of collaboration between companies from different industry sectors. This approach has historically resulted in the conception of entirely new ways of solving problems and delivering services.
-
-Our solution is built on the very foundation that in 5 years’ time we may have a radically different way of gathering traffic flow information. With research projects we want to go further than just integrating with all data, but ask the question; why could a car not tell a signal as it passes what it was like where it has been and what it is like now? The car could also tell the signal where it is going, helping it make a decision about which stage to give priority to. Why could the signal not then tell the car what the traffic is like on its way and how going a different route may be more efficient? This technology is here today and our approach, architecture and technology will mean these advances are simple upgrades not complete changes to the very fundamentals of systems deployed.
-
-TrafficSignals.ai vision is to challenge impossible positions and provide an innovative and deeply integrated approach to intelligence around big data, internet of things and other sources of data. The business strives to be first to market for product innovations, capability and business needs fulfilment. Our focus is on enabling clients to reduce revenue spends whilst increasing quality of service through machine learning and artificial intelligence.
+Our TrafficSignals.ai platform is for intelligent transport system integrators, who need advanced traffic signal detection and control, the TrafficSignals.ai platform is a technology framework that significantly reduces the time taken to deliver products and solutions. Unlike building or buying an off the shelf solution, the TrafficSignals.ai allows tight technical integration, full data gathering and control and the necessary regulatory documentation for rapid product and solution realisation.
 
 For more information, visit: [TrafficSignals.ai](http://TrafficSignals.ai)
 
