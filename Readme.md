@@ -48,7 +48,7 @@ To automatically create source documentation from the comments in the source fil
 
 ```Bash
 sudo apt install doxygen # if not already installed...
-cd ~/src/trafficsignals-ai/common/open
+cd ~/src/trafficsignals-ai/common-open
 doxygen
 ```
 Files will now have been created in the ```/html``` and ```/latex``` directories. ```/html/index.html``` is the home page for the documentation.
