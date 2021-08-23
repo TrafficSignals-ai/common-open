@@ -54,6 +54,7 @@ To automatically create source documentation from the comments in the source fil
 
 ```Bash
 sudo apt install doxygen # if not already installed...
+cd ~/src/trafficsignals-ai/common/open
 doxygen
 ```
 
