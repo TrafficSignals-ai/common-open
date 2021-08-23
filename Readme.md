@@ -14,9 +14,9 @@ For more information, visit: [TrafficSignals.ai](http://TrafficSignals.ai)
 
 # Common Library for Open Source
 
-This library contains source code which is derived directly from open source software. Note, these instructions are for Ubuntu 20.04 LTS, other platforms may vary. It is also assumed gcc, g++ and cmake, pkconfig and other common development environment requirements are present.  
+This library contains source code which is derived directly from open source software. Note, these instructions are for Ubuntu 20.04 LTS, other platforms may vary.  
 
-## Pre-requisites
+## Pre-requisites 
 
 Please install the following libraries. Note, all are required, even if only some or one part of the libraries are used. 
 
@@ -24,8 +24,9 @@ Please install the following libraries. Note, all are required, even if only som
 sudo apt update
 sudo apt upgrade
 
-sudo apt install libboost-all-dev # Boost.Asio
+sudo apt install gcc build-essential cmake pkg-config git
 
+sudo apt install libboost-all-dev # Boost.Asio
 ```
 
 ## Compile
