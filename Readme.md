@@ -14,15 +14,9 @@ TrafficSignals.ai vision is to challenge impossible positions and provide an inn
 
 # Common Library for Open Source
 
-This library contains source code which is derived directly from open source software. 
+This library contains source code which is derived directly from open source software. Note, these instructions are for Ubuntu 20.04 LTS, other platforms may vary. 
 
-## Boost.Asio
-
-Boost.Asio is a cross-platform C++ library for network and low-level I/O programming that provides developers with a consistent asynchronous model using a modern C++ approach. The source code can be found in the /BOOST directory and is derived from the examples provided. 
-
-[Official Page](https://www.boost.org/doc/libs/1_76_0/doc/html/boost_asio.html) - [Licence](BOOST/BOOST_LICENSE_1_0.txt) - [Licence FAQ](https://www.boost.org/users/license.html#FAQ) - [Documentation](https://www.boost.org/doc/libs/1_76_0/doc/html/boost_asio/reference.html)
-
-### Pre-requisites
+## Pre-requisites
 
 Please install the following libraries. Note, all are required, even if only some or one part of the libraries are used. 
 
@@ -34,7 +28,7 @@ sudo apt install libboost-all-dev # Boost.Asio
 
 ```
 
-### Compile
+## Compile
 
 To download and compile to repository from source control, execute the following: 
 
@@ -48,7 +42,7 @@ cmake ..
 make -jXX # where XX is the number of available cores 
 ```
 
-### Source Documentation 
+## Source Documentation 
 
 To automatically create source documentation from the comments in the source files execute the following steps from the home directory of the project:
 
@@ -57,8 +51,15 @@ sudo apt install doxygen # if not already installed...
 cd ~/src/trafficsignals-ai/common/open
 doxygen
 ```
-
 Files will now have been created in the ```/html``` and ```/latex``` directories. ```/html/index.html``` is the home page for the documentation.
+
+## Libraries Used
+
+### Boost.Asio
+
+Boost.Asio is a cross-platform C++ library for network and low-level I/O programming that provides developers with a consistent asynchronous model using a modern C++ approach. The source code can be found in the /BOOST directory and is derived from the examples provided. 
+
+[Official Page](https://www.boost.org/doc/libs/1_76_0/doc/html/boost_asio.html) - [Licence](BOOST/BOOST_LICENSE_1_0.txt) - [Licence FAQ](https://www.boost.org/users/license.html#FAQ) - [Documentation](https://www.boost.org/doc/libs/1_76_0/doc/html/boost_asio/reference.html)
 
 ## Technical Documentation
 
