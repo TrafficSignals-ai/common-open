@@ -53,6 +53,12 @@ doxygen
 ```
 Files will now have been created in the ```/html``` and ```/latex``` directories. ```/html/index.html``` is the home page for the documentation.
 
+Execute the following to bring up the index: 
+
+```Bash
+x-www-browser index.html
+```
+
 ## Libraries Used
 
 ### Boost.Asio
