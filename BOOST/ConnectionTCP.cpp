@@ -170,9 +170,10 @@ public:
     \param io_context the server context in which to create the connection.
     \return void
     */
-    ServerTCP(boost::asio::io_context& io_context) : io_context_(io_context), acceptor_(io_context, tcp::endpoint(tcp::v4(), 8000))
+    ServerTCP(boost::asio::io_context& io_context, int port) : io_context_(io_context), acceptor_(io_context, tcp::endpoint(tcp::v4(), port))
     {
         _threadMaintainConnections = std::thread(&ServerTCP::MaintainConnections, this);
+        _port = port;
         std::cout << "ServerTCP::ServerTCP Created. Port: " << _port << std::endl;
 
         CreateAcceptHandler();
@@ -314,7 +315,7 @@ private:
     
     std::thread _threadMaintainConnections; //!< Thread container for the MaiantainConnections method
 
-    int const _port = 8000; //!< TODO: The port number ot listen on.
+    int _port; //!< TODO: The port number ot listen on.
     std::string _serverName = "Boost.ASIO Test"; //!< TODO: Textual description of the server. 
 
 };
@@ -339,6 +340,7 @@ private:
     std::thread _threadStart; //!< Thread container for the Start method
     
     bool _healthy;  //!< Store if the server is healthy.  
+    int _port;
 
 public: 
     /*!
@@ -346,9 +348,10 @@ public:
     \brief A constructor for the connection manager class. 
     \return void
     */
-    ConnectionManager()
+    ConnectionManager(int port)
     {
         _healthy = true;
+        _port = port;
         std::cout << "main::createServer initalised." << std::endl;
         _threadStart = std::thread(&ConnectionManager::Start, this);
         return;
@@ -374,7 +377,7 @@ public:
     void Start()
     {
         boost::asio::io_context context;
-        ServerTCP server(context);
+        ServerTCP server(context, _port);
         _server = &(server);
         _healthy = true;
         context.run();

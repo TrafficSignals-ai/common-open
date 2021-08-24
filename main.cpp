@@ -10,9 +10,10 @@
 
 #include <string>
 
-int main()
+void BoostExample()
 {
-    std::unique_ptr connectionManagerPtr = std::unique_ptr<ConnectionManager>(new ConnectionManager());
+    const int port = 8000;
+    std::unique_ptr connectionManagerPtr = std::unique_ptr<ConnectionManager>(new ConnectionManager(port));
 
     std::this_thread::sleep_for (std::chrono::seconds(5));
    
@@ -30,7 +31,9 @@ int main()
             else
             {
                 connectionManagerPtr->~ConnectionManager();
-                connectionManagerPtr = std::unique_ptr<ConnectionManager>(new ConnectionManager());
+                std::this_thread::sleep_for (std::chrono::seconds(5));
+                connectionManagerPtr = std::unique_ptr<ConnectionManager>(new ConnectionManager(port));
+                std::this_thread::sleep_for (std::chrono::seconds(5));
             }
             i++;
             std::this_thread::sleep_for (std::chrono::milliseconds(250));
@@ -43,5 +46,12 @@ int main()
         std::cerr << e.what() << std::endl;
     }
 
+}
+
+int main()
+{
+    BoostExample();
     return 0;
 }
+
+
