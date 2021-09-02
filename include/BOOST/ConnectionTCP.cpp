@@ -3,6 +3,8 @@
 //    (See accompanying file BOOST_LICENSE_1_0.txt or copy at
 //          https://www.boost.org/LICENSE_1_0.txt)
 
+#pragma once
+
 #include <boost/bind/bind.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
@@ -27,13 +29,6 @@
 #include <utility>
 
 using boost::asio::ip::tcp;
-
-std::string make_daytime_string()
-{
-    using namespace std; // For time_t, time and ctime;
-    time_t now = time(0);
-    return ctime(&now);
-}
 
 /*!
     \class ConnectionTCP

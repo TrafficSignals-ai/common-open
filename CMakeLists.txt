@@ -56,7 +56,7 @@ message("-- Set compile options to report for all warnings.")
 
 add_library(
     ${LIB_NAME} STATIC
-    BOOST/ConnectionTCP.cpp
+    include/BOOST/ConnectionTCP.cpp
 )
 message("-- Created library.")
 
