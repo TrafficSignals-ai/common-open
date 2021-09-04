@@ -23,6 +23,7 @@
 #include <mutex>
 
 #include <list>
+#include <queue>
 
 #include <stdexcept>
 
@@ -404,6 +405,142 @@ public:
     }
 
 
+};
+
+class ConnectionClient
+{
+private:
+    int _maxLength = 1024;
+    int _port;
+    std::string _address;
+
+    std::queue<std::string> _buffer;
+    std::mutex _bufferMutex;
+    std::time_t _lastMessageReceived;    
+
+    boost::asio::io_context io_context;
+
+    std::thread _threadMaintainConnection;
+
+    void MaintainConnection()
+    {
+        while(true)
+        {
+            try
+            {
+                std::cout << "ConnectionClient::MaintainConnection Attempting to open: " << _address << ":" << _port << std::endl;
+                tcp::socket s(io_context);
+                tcp::resolver resolver(io_context);
+                boost::asio::connect(s, resolver.resolve(_address, std::to_string(_port)));
+                std::cout << "ConnectionClient::MaintainConnection Connected." << std::endl;
+
+                while(s.is_open())
+                {
+                    char replyC[_maxLength];
+                    size_t reply_length = boost::asio::read(s, boost::asio::buffer(replyC, _maxLength));
+                    std::string replyS(replyC);  
+
+                    std::unique_lock<std::mutex> pushGuard(_bufferMutex);
+                    _buffer.push(replyS);
+                    pushGuard.unlock();
+                }
+            }
+            catch (std::exception& e)
+            {
+                std::cout << "ConnectionClient::MaintainConnection Exception @ " << _address << ":" << _port << " What: " << e.what() << std::endl;
+                std::this_thread::sleep_for (std::chrono::seconds(5));
+            }
+        }
+
+    }
+
+protected:
+
+public:
+
+    ConnectionClient(std::string address, int port)
+    {
+        _address = address;
+        _port = port;
+
+        _threadMaintainConnection = std::thread(&ConnectionClient::MaintainConnection, this);
+
+        std::cout << "ConnectionClient::ConnectionClient Initalised." << std::endl;
+    }
+
+    int BufferSize()
+    {
+        int bufferSize;
+        std::unique_lock<std::mutex> sizeGuard(_bufferMutex);
+        bufferSize = _buffer.size();
+        sizeGuard.unlock();
+        return bufferSize;
+
+    }
+
+    std::string AwaitTag(std::string tag)
+    {
+        std::string fragment;
+
+        std::string tagStart = "<" + tag;
+        std::string tagEnd = "</" + tag + ">";
+
+        while (true)
+        {
+            while (!_buffer.empty())
+            {
+                std::string tagContent;
+                std::unique_lock<std::mutex> processGuard(_bufferMutex);
+
+                std::string front = _buffer.front();
+                _buffer.pop();
+
+                fragment = fragment + front;
+
+                size_t start = fragment.find(tagStart);
+                size_t end = fragment.find(tagEnd);
+
+                
+                if ((start == std::string::npos) && (end == std::string::npos)) // Nothing there of value
+                {
+                    fragment = "";
+                }
+                else if ((start != std::string::npos) && (end != std::string::npos)) //Extract out data, sort out buffer and return.
+                {
+                    end = end + tagEnd.size();
+                    int bufferSize = _buffer.size();
+
+                    tagContent = fragment.substr(start, (end - start));
+                    std::string leftOver = fragment.substr(end, (fragment.size() - end));
+
+                    if (leftOver.size() > 0)
+                    {
+                        _buffer.push(leftOver);
+                        //bufferSize--;
+                    }
+
+                    for (int i = 0; i < bufferSize; i++)
+                    {
+                        std::string message = _buffer.front();
+                        _buffer.pop();
+                        _buffer.push(message);
+                    }
+
+                }
+                //else Partial message received.
+
+                processGuard.unlock();
+
+                if (!tagContent.empty())
+                {
+                    return tagContent;
+                }
+
+                std::this_thread::sleep_for (std::chrono::milliseconds(50)); // awaiting end of tag to flush through
+            }
+            std::this_thread::sleep_for (std::chrono::milliseconds(200)); // nothing to process
+        }
+    }
 };
 
 

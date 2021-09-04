@@ -34,7 +34,7 @@
 
 #include <string>
 
-void BoostExample()
+void BoostServerExample()
 {
     const int port = 8000;
     std::unique_ptr connectionManagerPtr = std::unique_ptr<ConnectionManager>(new ConnectionManager(port));
@@ -72,9 +72,26 @@ void BoostExample()
 
 }
 
+void BoostClientExample()
+{
+    const int port = 8000;
+    const std::string tag = "Camera";
+
+    ConnectionClient client("localhost", port);
+    std::this_thread::sleep_for (std::chrono::seconds(1)); // nothing to process
+
+    while (true)
+    {
+        std::string content = client.AwaitTag(tag);
+        std::cout << "Tag received of " << content.size() << " characters. Buffer size: " << client.BufferSize() << std::endl;
+    }
+}
+
 int main()
 {
-    BoostExample();
+    //BoostServerExample();
+    BoostClientExample();
+
     return 0;
 }
 
