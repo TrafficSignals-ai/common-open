@@ -407,21 +407,39 @@ public:
 
 };
 
+/*!
+    \class ConnectionClient
+    \brief Represents a client connection object
+
+    Responsability
+    --------------
+    Control the client, receive messages and serve 
+
+    Collaboration
+    -------------
+    Used by objects requiring a client connection to a server. 
+*/
 class ConnectionClient
 {
 private:
-    int _maxLength = 1024;
-    int _port;
-    std::string _address;
+    int _maxLength = 1024; //!< The ammount of bytes to receive at once. 
+    int _port; //!< The port number to connect to
+    std::string _address; //!< The address to connect to
 
-    std::queue<std::string> _buffer;
-    std::mutex _bufferMutex;
-    std::time_t _lastMessageReceived;    
+    std::queue<std::string> _buffer; //!< a queue of messages received.
+    std::mutex _bufferMutex; //!< Mutex for the buffer
+    std::time_t _lastMessageReceived; //!< The time a message was last received.
 
-    boost::asio::io_context io_context;
+    boost::asio::io_context io_context;  //!< the client context in which to create the connection.
 
-    std::thread _threadMaintainConnection;
+    std::thread _threadMaintainConnection; //!< The thread used to maintain connection.
 
+    /*!
+    \fn MaintainConnection
+    \brief Maintains the client connection and services data received. 
+    \warning This method should be called in it's own thread. 
+    \return None. 
+    */
     void MaintainConnection()
     {
         while(true)
@@ -458,6 +476,11 @@ protected:
 
 public:
 
+    /*!
+    \fn ConnectionClient
+    \brief A constructor for the connection client class. 
+    \return void
+    */
     ConnectionClient(std::string address, int port)
     {
         _address = address;
@@ -468,6 +491,11 @@ public:
         std::cout << "ConnectionClient::ConnectionClient Initalised." << std::endl;
     }
 
+    /*!
+    \fn BufferSize
+    \brief Gets the current buffer size. 
+    \return Buffer's Size
+    */
     int BufferSize()
     {
         int bufferSize;
@@ -478,6 +506,13 @@ public:
 
     }
 
+    /*!
+    \fn AwaitTag
+    \brief Gets the next content in the buffer enclosed in the tag. 
+    \param the Tag without < and > tags to look for.
+    \warning Blocks until tag found in buffer.  
+    \return The whole content, including tags with < > within the tag name.
+    */
     std::string AwaitTag(std::string tag)
     {
         std::string fragment;
@@ -516,7 +551,6 @@ public:
                     if (leftOver.size() > 0)
                     {
                         _buffer.push(leftOver);
-                        //bufferSize--;
                     }
 
                     for (int i = 0; i < bufferSize; i++)
