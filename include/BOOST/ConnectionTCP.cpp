@@ -522,9 +522,12 @@ public:
 
         while (true)
         {
+
             while (!_buffer.empty())
             {
+                bool partialMessageReceived = false;
                 std::string tagContent;
+
                 std::unique_lock<std::mutex> processGuard(_bufferMutex);
 
                 std::string front = _buffer.front();
@@ -539,6 +542,8 @@ public:
                 if ((start == std::string::npos) && (end == std::string::npos)) // Nothing there of value
                 {
                     fragment = "";
+                    partialMessageReceived = true;
+                    //std::cout << "ConnectionClient::AwaitTag No Start Tag Received." << std::endl;
                 }
                 else if ((start != std::string::npos) && (end != std::string::npos)) //Extract out data, sort out buffer and return.
                 {
@@ -561,16 +566,30 @@ public:
                     }
 
                 }
-                //else Partial message received.
+                else //Partial message received.
+                {
+                    //std::cout << "ConnectionClient::AwaitTag Partial Message Received." << std::endl;
+                    partialMessageReceived = true;
+                }
 
+                int bufferSize = _buffer.size();
                 processGuard.unlock();
 
                 if (!tagContent.empty())
                 {
+                    //std::cout << "ConnectionClient::AwaitTag Returning content." << std::endl;
                     return tagContent;
                 }
-
-                std::this_thread::sleep_for (std::chrono::milliseconds(50)); // awaiting end of tag to flush through
+                else if (partialMessageReceived && (bufferSize < 20))
+                {
+                    //std::cout << "ConnectionClient::AwaitTag  Partial Message Received SLEEPING LONG." << std::endl;
+                    std::this_thread::sleep_for (std::chrono::milliseconds(50)); // awaiting end of tag to flush through
+                }
+                else if (partialMessageReceived)
+                {
+                    //std::cout << "ConnectionClient::AwaitTag  Partial Message Received SLEEPING SHORT." << std::endl;
+                    std::this_thread::sleep_for (std::chrono::milliseconds(5)); // awaiting end of tag to flush through
+                }
             }
             std::this_thread::sleep_for (std::chrono::milliseconds(200)); // nothing to process
         }

@@ -10,7 +10,9 @@ For more information, visit: [TrafficSignals.ai](http://TrafficSignals.ai)
 
 # Common Library for Open Source
 
-This library contains source code which is derived directly from open source software. Note, these instructions are for Ubuntu 20.04 LTS, other platforms may vary.  
+This library contains source code which is derived directly from or uses open source software. 
+
+Note, the instruction for use below are for Ubuntu 20.04 LTS, other platforms may vary.  
 
 ## Pre-requisites 
 
@@ -30,13 +32,11 @@ sudo apt install libboost-all-dev # Boost.Asio
 To download and compile to repository from source control, execute the following: 
 
 ```Bash
-mkdir -p ~/src/trafficsignals-ai
-cd ~/src/trafficsignals-ai
+mkdir -p ~/src/TrafficSignals-ai
+cd ~/src/TrafficSignals-ai
 git clone https://github.com/TrafficSignals-ai/common-open.git
 cd common-open
-mkdir release && cd release
-cmake ..
-make -jXX # where XX is the number of available cores 
+./compile.sh
 ```
 
 ## Source Documentation 
@@ -63,6 +63,15 @@ x-www-browser index.html
 Boost.Asio is a cross-platform C++ library for network and low-level I/O programming that provides developers with a consistent asynchronous model using a modern C++ approach. The source code can be found in the /BOOST directory and is derived from the examples provided. 
 
 [Official Page](https://www.boost.org/doc/libs/1_76_0/doc/html/boost_asio.html) - [Licence](BOOST/BOOST_LICENSE_1_0.txt) - [Licence FAQ](https://www.boost.org/users/license.html#FAQ) - [Documentation](https://www.boost.org/doc/libs/1_76_0/doc/html/boost_asio/reference.html)
+
+### RapidXml
+
+RapidXml is an attempt to create the fastest XML parser possible, while retaining useability, portability and reasonable W3C compatibility. It is an in-situ parser written in modern C++, with parsing speed approaching that of strlen function executed on the same data.
+
+This implementation uses the licence option 2, the "2. The MIT License" permitted under the [licence agreement options](http://rapidxml.sourceforge.net/license.txt) .
+
+[Official Page](http://rapidxml.sourceforge.net/) - [Licence](rapidxml/licence.txt) - [Documentation](http://rapidxml.sourceforge.net/manual.html)
+
 
 ## Technical Documentation
 

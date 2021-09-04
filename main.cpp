@@ -39,7 +39,7 @@ void BoostServerExample()
     const int port = 8000;
     std::unique_ptr connectionManagerPtr = std::unique_ptr<ConnectionManager>(new ConnectionManager(port));
 
-    std::this_thread::sleep_for (std::chrono::seconds(5));
+    std::this_thread::sleep_for (std::chrono::seconds());
    
     std::cout << "main Executing." << std::endl;
     try

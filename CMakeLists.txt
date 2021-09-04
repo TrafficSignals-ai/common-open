@@ -32,7 +32,6 @@ set(THREADS_PREFER_PTHREAD_FLAG ON)
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 message(STATUS "Initalised lpthread.")
 
-
 find_package( PkgConfig REQUIRED)
 message(STATUS "PkgConfig found and added.")
 
@@ -57,6 +56,10 @@ message("-- Set compile options to report for all warnings.")
 add_library(
     ${LIB_NAME} STATIC
     include/BOOST/ConnectionTCP.cpp
+    include/rapidxml-1.13/rapidxml_iterators.hpp
+    include/rapidxml-1.13/rapidxml_print.hpp
+    include/rapidxml-1.13/rapidxml_utils.hpp
+    include/rapidxml-1.13/rapidxml.hpp
 )
 message("-- Created library.")
 
