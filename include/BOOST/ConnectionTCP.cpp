@@ -623,7 +623,7 @@ public:
                     //std::cout << "ConnectionClient::AwaitTag Returning content." << std::endl;
                     return tagContent;
                 }
-                else if (partialMessageReceived && (bufferSize < 20))
+                else if (partialMessageReceived && (bufferSize < 5))
                 {
                     //std::cout << "ConnectionClient::AwaitTag  Partial Message Received SLEEPING LONG." << std::endl;
                     std::this_thread::sleep_for (std::chrono::milliseconds(50)); // awaiting end of tag to flush through
