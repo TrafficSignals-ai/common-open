@@ -3,7 +3,10 @@
 //    (See accompanying file BOOST_LICENSE_1_0.txt or copy at
 //          https://www.boost.org/LICENSE_1_0.txt)
 
-#pragma once
+#ifndef CONNECTIONTCP_H
+#define CONNECTIONTCP_H
+
+//#pragma once
 
 #include <boost/bind/bind.hpp>
 #include <boost/shared_ptr.hpp>
@@ -455,7 +458,7 @@ private:
                 while(s.is_open())
                 {
                     char replyC[_maxLength];
-                    size_t reply_length = boost::asio::read(s, boost::asio::buffer(replyC, _maxLength));
+                    boost::asio::read(s, boost::asio::buffer(replyC, _maxLength));
                     std::string replyS(replyC);  
 
                     std::unique_lock<std::mutex> pushGuard(_bufferMutex);
@@ -489,6 +492,26 @@ public:
         _threadMaintainConnection = std::thread(&ConnectionClient::MaintainConnection, this);
 
         std::cout << "ConnectionClient::ConnectionClient Initalised." << std::endl;
+    }
+
+    /*!
+    \fn _ConnectionClient
+    \brief A distructor for the connection client class. 
+    \return void
+    */
+    ~ConnectionClient()
+    {
+        _threadMaintainConnection.~thread();
+        //io_context.~io_context();
+
+        std::unique_lock<std::mutex> clearGuard(_bufferMutex);
+        while (!_buffer.empty())
+        {
+            _buffer.pop();
+        }
+        clearGuard.unlock();
+
+        std::cout << "ConnectionClient::ConnectionClient distroyed." << std::endl;
     }
 
     /*!
@@ -538,7 +561,6 @@ public:
                 size_t start = fragment.find(tagStart);
                 size_t end = fragment.find(tagEnd);
 
-                
                 if ((start == std::string::npos) && (end == std::string::npos)) // Nothing there of value
                 {
                     fragment = "";
@@ -547,11 +569,32 @@ public:
                 }
                 else if ((start != std::string::npos) && (end != std::string::npos)) //Extract out data, sort out buffer and return.
                 {
-                    end = end + tagEnd.size();
                     int bufferSize = _buffer.size();
+                    end = end + tagEnd.size();
 
-                    tagContent = fragment.substr(start, (end - start));
                     std::string leftOver = fragment.substr(end, (fragment.size() - end));
+
+                    
+                    if (start < end)
+                    {
+                        tagContent = fragment.substr(start, end);
+                    }
+                    else
+                    {
+                        std::cout << "------------------------------" << std::endl;
+                        std::cout << "BUFFER ERROR" << std::endl;
+                        std::cout << "------------------------------" << std::endl;
+                        std::cout << "Fragment:" << start << " " << end << std::endl;
+                        std::cout << fragment << std::endl;
+
+                        std::cout << "Content:" << std::endl;
+                        std::cout << tagContent << std::endl;
+
+                        std::cout << "LeftOvers: " << std::endl << leftOver << std::endl;
+                        std::cout << "------------------------------" << std::endl;
+
+                        fragment = "";
+                    }
 
                     if (leftOver.size() > 0)
                     {
@@ -726,3 +769,5 @@ public:
     123 = No medium found
     124 = Wrong medium type
 */
+
+#endif

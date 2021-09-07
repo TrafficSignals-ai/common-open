@@ -75,9 +75,9 @@ void BoostServerExample()
 void BoostClientExample()
 {
     const int port = 8000;
-    const std::string tag = "Camera";
+    const std::string tag = "Vision";
 
-    ConnectionClient client("localhost", port);
+    ConnectionClient client("192.168.1.178", port);
     std::this_thread::sleep_for (std::chrono::seconds(1)); // nothing to process
 
     while (true)
