@@ -15,12 +15,18 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <iomanip>
+#include <fstream>
+
 #include <memory>
 
 #include <string>
 
 #include <chrono>
 #include <ctime>
+#include <time.h>       /* time_t, struct tm, difftime, time, mktime */
+#include <ctime>
+#include <chrono>         // std::chrono::seconds
 
 #include <thread>
 #include <mutex>
@@ -425,7 +431,7 @@ public:
 class ConnectionClient
 {
 private:
-    int _maxLength = 1024; //!< The ammount of bytes to receive at once. 
+    int _maxLength = 10240; //!< The ammount of bytes to receive at once. 
     int _port; //!< The port number to connect to
     std::string _address; //!< The address to connect to
 
@@ -464,6 +470,36 @@ private:
                     std::unique_lock<std::mutex> pushGuard(_bufferMutex);
                     _buffer.push(replyS);
                     pushGuard.unlock();
+
+
+
+                    bool logInput = false;
+
+                    if (logInput)
+                    {
+                        const std::string _logPath = "./log";
+
+                        using namespace std::chrono;
+                        auto timepoint = system_clock::now();
+                        auto coarse = system_clock::to_time_t(timepoint);
+                        auto fine = time_point_cast<std::chrono::milliseconds>(timepoint);
+
+                        char buffer[sizeof "9999-12-31 23:59:59.999"];
+                        std::snprintf(buffer + std::strftime(buffer, sizeof buffer - 3,
+                                        "%F %T.", std::localtime(&coarse)),
+                                        4, "%03lu", fine.time_since_epoch().count() % 1000);
+
+                        std::string fileName = _logPath + "/" + buffer + "-ClientTCP.log";
+
+                        std::ofstream logFile;
+                        logFile.open (fileName, std::ios::app);
+
+                        logFile << replyS << std::endl;
+
+                        logFile.close();
+                    }
+
+
                 }
             }
             catch (std::exception& e)
@@ -590,8 +626,20 @@ public:
                         std::cout << "Content:" << std::endl;
                         std::cout << tagContent << std::endl;
 
-                        std::cout << "LeftOvers: " << std::endl << leftOver << std::endl;
+                        std::cout << "LeftOvers: " << std::endl;
+                        std::cout << leftOver << std::endl;
+
+                        std::cout << "Buffer: " << std::endl;
+
+                        for (int i = 0; i < _buffer.size(); i++)
+                        {
+                            std::string message = _buffer.front();
+                            _buffer.pop();
+                            _buffer.push(message);
+                            std::cout << "\t["<< i << "] " << message << std::endl;
+                        }
                         std::cout << "------------------------------" << std::endl;
+
 
                         fragment = "";
                     }

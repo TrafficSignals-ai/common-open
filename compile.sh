@@ -8,7 +8,15 @@ echo "-- Cores: $phycores."
 rm -rf      ~/src/TrafficSignals-ai/common-open/release
 mkdir -p    ~/src/TrafficSignals-ai/common-open/release/include
 cp -r       ~/src/TrafficSignals-ai/common-open/include/*                       ~/src/TrafficSignals-ai/common-open/release/include
+mkdir -p    ~/src/TrafficSignals-ai/common-open/release/log
 echo "-- Refreshed /release"
+
+rm -rf      ~/src/TrafficSignals-ai/common-open/debug
+mkdir -p    ~/src/TrafficSignals-ai/common-open/debug/include
+cp -r       ~/src/TrafficSignals-ai/common-open/include/*                       ~/src/TrafficSignals-ai/common-open/debug/include
+mkdir -p    ~/src/TrafficSignals-ai/common-open/debug/log
+echo "-- Refreshed /release"
+
 
 echo --------------------------------
 echo "-- Creating MakeFile"

@@ -28,9 +28,22 @@
 #include <memory>
 
 #include <cctype>
+
 #include <time.h>       /* time_t, struct tm, difftime, time, mktime */
+#include <ctime>
 #include <chrono>         // std::chrono::seconds
+
 #include <iomanip>
+#include <fstream>
+#include <iostream>
+
+#include <string>
+
+#include <map>
+
+#include <sys/stat.h>
+#include <unistd.h>
+
 
 #include <string>
 
@@ -84,6 +97,8 @@ void BoostClientExample()
     {
         std::string content = client.AwaitTag(tag);
         std::cout << "Tag received of " << content.size() << " characters. Buffer size: " << client.BufferSize() << std::endl;
+
+
     }
 }
 
