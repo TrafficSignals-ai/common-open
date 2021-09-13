@@ -674,7 +674,7 @@ public:
                 else if (partialMessageReceived && (bufferSize < 5))
                 {
                     //std::cout << "ConnectionClient::AwaitTag  Partial Message Received SLEEPING LONG." << std::endl;
-                    std::this_thread::sleep_for (std::chrono::milliseconds(50)); // awaiting end of tag to flush through
+                    std::this_thread::sleep_for (std::chrono::milliseconds(10)); // awaiting end of tag to flush through
                 }
                 else if (partialMessageReceived)
                 {
