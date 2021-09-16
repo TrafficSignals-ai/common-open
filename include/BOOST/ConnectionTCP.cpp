@@ -631,7 +631,7 @@ public:
 
                         std::cout << "Buffer: " << std::endl;
 
-                        for (int i = 0; i < _buffer.size(); i++)
+                        for (unsigned long i = 0; i < _buffer.size(); i++)
                         {
                             std::string message = _buffer.front();
                             _buffer.pop();
