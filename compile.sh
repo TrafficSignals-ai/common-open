@@ -15,12 +15,12 @@ rm -rf      debug
 mkdir -p    debug/include
 cp -r       include/*                       debug/include
 mkdir -p    debug/log
-echo "-- Refreshed /release"
+echo "-- Refreshed /debug"
 
 
 echo --------------------------------
 echo "-- Creating MakeFile"
-cd /release
+cd release
 cmake ..
 echo "-- MakeFile created"
 
