@@ -47,3 +47,4 @@ raise.c
 *.exe
 *.out
 *.app
+include/JetsonGPIO_CPP/
