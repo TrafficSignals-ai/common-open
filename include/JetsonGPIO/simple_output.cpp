@@ -19,10 +19,11 @@ int jetson_gpio_simple_output() {
     return -1;
   }
 
-  PrintChannelInfo(gpio.GetChannelInfo(jetson::BoardMode::BOARD, "18"));
+  PrintChannelInfo(gpio.GetChannelInfo(jetson::BoardMode::BOARD, "26"));
 
   std::map<jetson::BoardType, std::string> kPinNum = {
       {jetson::BoardType::JETSON_XAVIER, "18"},
+      {jetson::BoardType::JETSON_NANO, "26"},
       {jetson::BoardType::JETSON_NANO, "33"}};
 
   // Board pin-numbering scheme
@@ -35,7 +36,7 @@ int jetson_gpio_simple_output() {
   // Set pin as an output pin with optional initial state of HIGH
   auto setup_result =
       gpio.CreateBinary(kPinNum[gpio.GetBoardType()], jetson::Direction::OUT,
-                        jetson::Signal::HIGH);
+                        jetson::Signal::LOW);
   if (!setup_result.second) {
     std::cout << "[ERROR]: Gpio setup failed with." << setup_result.first
               << std::endl;
@@ -51,8 +52,17 @@ int jetson_gpio_simple_output() {
             << "Press q for quit" << std::endl;
   while (int c = std::getchar()) {
     if (static_cast<char>(c) == 'q') break;
-    if (static_cast<char>(c) == '0') signal->Write(0);
-    if (static_cast<char>(c) == '1') signal->Write(1);
+    if (static_cast<char>(c) == '0') 
+    {
+      signal->Write(0);
+      std::cout << std::endl << " - Set low." << std::endl << ">" ;
+
+    }
+    if (static_cast<char>(c) == '1') 
+    {
+      signal->Write(1);
+      std::cout << std::endl << " - Set high." << std::endl << ">" ;
+    }
   }
 
   return 0;

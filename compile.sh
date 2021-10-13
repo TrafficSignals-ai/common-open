@@ -1,9 +1,7 @@
 echo "-----------------------------------------------"
 echo "Compiling TrafficSignals.ai Common Open library"
 echo "-----------------------------------------------"
-
-phycores=$(echo $sudoPW|cat - /proc/cpuinfo|grep -m 1 "cpu cores"|awk '{print $ 4;}')
-echo "-- Cores: $phycores."
+echo "-- Cores: $nproc."
 
 rm -rf      release
 mkdir -p    release/include
@@ -25,6 +23,6 @@ cmake ..
 echo "-- MakeFile created"
 
 echo --------------------------------
-echo "-- Making with $phycores cores."
-make -j$num_cpus
+echo "-- Making with $nproc proceses."
+make -j$nproc
 echo "-- Compiling TrafficSignals.ai Vision library complete."
