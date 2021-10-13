@@ -5,5 +5,7 @@
 ## Trunk
 
 - Added the BOOST library for socket management.
+- Added JetsonGPIO_CPP library for using NVIDIA Jetson GPIO headers.
+- Added rapidxml-1.13 library for xml reading and writing.
 
 For more information, please refer to this library's [ReadMe](README.md)

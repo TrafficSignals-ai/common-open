@@ -47,6 +47,11 @@
 
 #include <string>
 
+//#include "include/JetsonGPIO/include/JetsonGPIO.h"
+
+#include "include/JetsonGPIO_CPP/simple_output.cpp"
+
+
 void BoostServerExample()
 {
     const int port = 8000;
@@ -83,7 +88,7 @@ void BoostServerExample()
         std::cerr << e.what() << std::endl;
     }
 
-}
+};
 
 void BoostClientExample()
 {
@@ -100,14 +105,52 @@ void BoostClientExample()
 
 
     }
-}
+};
+
+/*
+void JetsonGPIOExample()
+{
+    cout << "model: "<< GPIO::model << endl;
+	cout << "lib version: " << GPIO::VERSION << endl;
+	cout << GPIO::JETSON_INFO << endl;
+
+
+	int output_pin = 18;
+	GPIO::setmode(GPIO::BCM);
+	GPIO::setup(output_pin, GPIO::OUT, GPIO::HIGH);
+	
+
+
+	cout << "BCM "<< output_pin << "pin, set to OUTPUT, HIGH" << endl;
+    cout << "Press Enter to Continue";
+	cin.ignore();
+
+	GPIO::output(output_pin, GPIO::LOW);
+	cout << output_pin <<"pin, set to LOW now" << endl;
+	cout << "Press Enter to Continue";
+	cin.ignore();
+
+	GPIO::cleanup();	
+
+	cout << "end" << endl;	
+	return 0;
+};
+*/
+
+void JetsonGPIO_CPPExample()
+{
+    jetson_gpio_simple_output();
+
+};
 
 int main()
 {
     //BoostServerExample();
-    BoostClientExample();
+    //BoostClientExample();
+    //JetsonGPIOExample();
+    JetsonGPIO_CPPExample();
 
     return 0;
-}
+};
 
 

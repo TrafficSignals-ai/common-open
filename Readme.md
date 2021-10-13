@@ -24,7 +24,7 @@ sudo apt upgrade
 
 sudo apt install gcc build-essential cmake pkg-config git
 
-sudo apt install libboost-all-dev # Boost.Asio
+sudo apt install libboost-all-dev 
 ```
 
 ## Compile
@@ -56,6 +56,10 @@ Execute the following to bring up the index:
 x-www-browser index.html
 ```
 
+## Technical Documentation
+
+[Release Notes](ReleaseNotes.md) - [Source Documentation](html/index.html)
+
 ## Libraries Used
 
 ### Boost.Asio
@@ -72,7 +76,10 @@ This implementation uses the licence option 2, the "2. The MIT License" permitte
 
 [Official Page](http://rapidxml.sourceforge.net/) - [Licence](rapidxml/licence.txt) - [Documentation](http://rapidxml.sourceforge.net/manual.html)
 
+### JetsonGPIO_CPP_
+JetsonGPIO_CPP is an C++ port of the **NVIDIA's Jetson.GPIO Python library**(https://github.com/NVIDIA/jetson-gpio).    
 
-## Technical Documentation
+Jetson TX1, TX2, AGX Xavier, and Nano development boards contain a 40 pin GPIO header, similar to the 40 pin header in the Raspberry Pi. These GPIOs can be controlled for digital input and output using this library. The library provides almost same APIs as the Jetson.GPIO Python library.  
 
-[Release Notes](ReleaseNotes.md) - [Source Documentation](html/index.html)
+
+[Official Page](https://github.com/caoyangjiang/JetsonGPIO_CPP) - Licence NONE - [Documentation](include/JetsonGPIO_CPP/README.md)
