@@ -63,15 +63,15 @@ add_library(
     include/rapidxml-1.13/rapidxml_print.hpp
     include/rapidxml-1.13/rapidxml_utils.hpp
     include/rapidxml-1.13/rapidxml.hpp
-    include/JetsonGPIO_CPP/binary_gpio.h
-    include/JetsonGPIO_CPP/binary_gpio.cpp
-    include/JetsonGPIO_CPP/gpio.h
-    include/JetsonGPIO_CPP/gpio.cpp
-    include/JetsonGPIO_CPP/pwm.h
-    include/JetsonGPIO_CPP/pwm.cpp
-    include/JetsonGPIO_CPP/simple_output.cpp
-    include/JetsonGPIO_CPP/types.h
-    include/JetsonGPIO_CPP/utils.h
+    include/JetsonGPIO/binary_gpio.h
+    include/JetsonGPIO/binary_gpio.cpp
+    include/JetsonGPIO/gpio.h
+    include/JetsonGPIO/gpio.cpp
+    include/JetsonGPIO/pwm.h
+    include/JetsonGPIO/pwm.cpp
+    include/JetsonGPIO/simple_output.cpp
+    include/JetsonGPIO/types.h
+    include/JetsonGPIO/utils.h
 )
 message("-- Created library.")
 

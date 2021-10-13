@@ -49,7 +49,7 @@
 
 //#include "include/JetsonGPIO/include/JetsonGPIO.h"
 
-#include "include/JetsonGPIO_CPP/simple_output.cpp"
+#include "include/JetsonGPIO/simple_output.cpp"
 
 
 void BoostServerExample()
