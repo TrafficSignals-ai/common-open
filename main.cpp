@@ -47,9 +47,7 @@
 
 #include <string>
 
-//#include "include/JetsonGPIO/include/JetsonGPIO.h"
-
-#include "include/JetsonGPIO/simple_output.cpp"
+#include <JetsonGPIO.h>
 
 
 void BoostServerExample()
@@ -107,48 +105,55 @@ void BoostClientExample()
     }
 };
 
-/*
 void JetsonGPIOExample()
 {
-    cout << "model: "<< GPIO::model << endl;
-	cout << "lib version: " << GPIO::VERSION << endl;
-	cout << GPIO::JETSON_INFO << endl;
+    std::cout << "model: "<< GPIO::model << std::endl;
+	std::cout << "lib version: " << GPIO::VERSION << std::endl;
+	std::cout << GPIO::JETSON_INFO << std::endl;
 
+    /*
+        <GPIO id="GPIO5" pin="29" address="gpio149" name="CAM_AF_EN" notes="" />
+        <GPIO id="SCL0" pin="28" address="" name="I2C_1_SCL" notes="I2C Bus 0 " />
+        <GPIO id="CE1" pin="26" address="gpio20" name="SPI_1_CS1" notes="" />
+        <GPIO id="GPIO25" pin="22" address="gpio13" name="SPI_2_MISO" notes="" />
+        <GPIO id="MOSI" pin="19" address="gpio16" name="SPI_1_MOSI" notes="" />
+        <GPIO id="GPIO24" pin="18" address="gpio15" name="SPI_2_CS0" notes="" />
+        <GPIO id="GPIO22" pin="15" address="gpio194" name="LCD_TE" notes="" />
+        <GPIO id="GPIO18" pin="12" address="gpio79" name="I2S_4_SCLK" notes="" />
+    */
 
-	int output_pin = 18;
+	std::list<int> output_pins = { 12, 15, 18, 19, 22, 26, 28, 29 };
 	GPIO::setmode(GPIO::BCM);
-	GPIO::setup(output_pin, GPIO::OUT, GPIO::HIGH);
+
+    while (true)
+    {
+        for (int pin : output_pins)
+        {
+            GPIO::setup(pin, GPIO::OUT, GPIO::HIGH);
+            std::this_thread::sleep_for (std::chrono::milliseconds(100));
+        }
+
+        std::this_thread::sleep_for (std::chrono::milliseconds(500));
+
+        for (int pin : output_pins)
+        {
+            GPIO::output(pin, GPIO::LOW);
+
+        }
+    }
 	
-
-
-	cout << "BCM "<< output_pin << "pin, set to OUTPUT, HIGH" << endl;
-    cout << "Press Enter to Continue";
-	cin.ignore();
-
-	GPIO::output(output_pin, GPIO::LOW);
-	cout << output_pin <<"pin, set to LOW now" << endl;
-	cout << "Press Enter to Continue";
-	cin.ignore();
-
-	GPIO::cleanup();	
-
-	cout << "end" << endl;	
-	return 0;
+    GPIO::cleanup();	
+	
+    return;
 };
-*/
 
-void JetsonGPIO_CPPExample()
-{
-    jetson_gpio_simple_output();
-
-};
 
 int main()
 {
     //BoostServerExample();
     //BoostClientExample();
-    //JetsonGPIOExample();
-    JetsonGPIO_CPPExample();
+    JetsonGPIOExample();
+
 
     return 0;
 };
