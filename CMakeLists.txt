@@ -56,21 +56,13 @@ message("-- Set compile options to report for all warnings.")
 add_library(
     ${LIB_NAME} STATIC
     include/BOOST/ConnectionTCP.cpp
+    include/BOOST/asyncClientTCP.cpp
     include/rapidxml-1.13/rapidxml_iterators.hpp
     include/rapidxml-1.13/rapidxml_print.hpp
     include/rapidxml-1.13/rapidxml_utils.hpp
     include/rapidxml-1.13/rapidxml.hpp
-    include/JetsonGPIO/include/gpio_event.h
-    include/JetsonGPIO/include/gpio_pin_data.h
-    include/JetsonGPIO/include/JetsonGPIO.h
-    include/JetsonGPIO/include/Model.h
-    include/JetsonGPIO/include/PythonFunctions.h
-    include/JetsonGPIO/src/gpio_event.cpp
-    include/JetsonGPIO/src/gpio_pin_data.cpp
-    include/JetsonGPIO/src/JetsonGPIO.cpp
-    include/JetsonGPIO/src/PythonFunctions.cpp
-    include/JetsonGPIO/src/test.cpp
 )
+
 message("-- Created library.")
 
 

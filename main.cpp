@@ -23,7 +23,6 @@
  * 
  */
 
-#include "include/BOOST/ConnectionTCP.cpp"
 
 #include <memory>
 
@@ -45,7 +44,8 @@
 
 #include <string>
 
-#include "include/JetsonGPIO/include/JetsonGPIO.h"
+#include "include/BOOST/ConnectionTCP.cpp"
+#include "include/BOOST/asyncClientTCP.cpp"
 
 
 void BoostServerExample()
@@ -103,58 +103,57 @@ void BoostClientExample()
     }
 };
 
-void JetsonGPIOExample()
+int asycClientTCPExample(int argc, char* argv[])
 {
-    std::cout << "model: "<< GPIO::model << std::endl;
-	std::cout << "lib version: " << GPIO::VERSION << std::endl;
-	std::cout << GPIO::JETSON_INFO << std::endl;
-
-    /*
-        <GPIO id="GPIO5" pin="29" address="gpio149" name="CAM_AF_EN" notes="" />
-        <GPIO id="SCL0" pin="28" address="" name="I2C_1_SCL" notes="I2C Bus 0 " />
-        <GPIO id="CE1" pin="26" address="gpio20" name="SPI_1_CS1" notes="" />
-        <GPIO id="GPIO25" pin="22" address="gpio13" name="SPI_2_MISO" notes="" />
-        <GPIO id="MOSI" pin="19" address="gpio16" name="SPI_1_MOSI" notes="" />
-        <GPIO id="GPIO24" pin="18" address="gpio15" name="SPI_2_CS0" notes="" />
-        <GPIO id="GPIO22" pin="15" address="gpio194" name="LCD_TE" notes="" />
-        <GPIO id="GPIO18" pin="12" address="gpio79" name="I2S_4_SCLK" notes="" />
-    */
-
-
-	std::list<int> output_pins = { 7, 11, 12, 13, 15, 16, 18, 19, 21, 23, 22, 23, 24, 26, 29, 31, 32, 33, 35, 36, 37, 38, 40 };
-	GPIO::setmode(GPIO::BOARD);
-
-    while (true)
+    try
     {
-        for (int pin : output_pins)
+        if (argc != 4)
         {
-            GPIO::setup(pin, GPIO::OUT, GPIO::HIGH);
-            std::this_thread::sleep_for (std::chrono::milliseconds(100));
+            std::cout << "Received: " << argv[0] << " " << argv[1] << "  " << argv[2] << "  " << argv[3] << std::endl;
+            std::cout << "Usage: console asycClientTCPExample <server> <port>" << std::endl;
+            std::cout << "Example:" << std::endl;
+            std::cout << "  console asycClientTCPExample localhost 8000" << std::endl;
+            return 1;
         }
 
-        std::this_thread::sleep_for (std::chrono::milliseconds(500));
+        boost::asio::io_service io_service;
+        asyncClientTCP asyncClient(io_service, argv[2], argv[3]);
+        io_service.run(); //blocking
 
-        for (int pin : output_pins)
+        std::cout << "Failed to start." << std::endl;    
+
+        /*
+        while (true)
         {
-            GPIO::output(pin, GPIO::LOW);
-
+            std::cout << "Received: " <<std::endl << asyncClient.ReceiveMessage() << std::endl;    
+            asyncClient.SendMessage("Thanks.");
         }
+        */
+
     }
-	
-    GPIO::cleanup();	
-	
-    return;
-};
-
-
-int main()
-{
-    //BoostServerExample();
-    //BoostClientExample();
-    JetsonGPIOExample();
-
+    catch (std::exception& e)
+    {
+        std::cout << "Exception: " << e.what() << "\n";
+    }
 
     return 0;
+}
+
+int main(int argc, char* argv[])
+{
+    if (argc > 1)
+    {
+        if (!strcmp(argv[1], "asycClientTCPExample"))        {
+            return asycClientTCPExample(argc, argv);
+        }
+    }
+
+
+    //BoostServerExample();
+    //BoostClientExample();
+    //JetsonGPIOExample();
+
+    
 };
 
 
