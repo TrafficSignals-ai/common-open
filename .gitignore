@@ -5,6 +5,9 @@ log/
 resources/
 unitTests/
 
+samples/
+build/
+
 html/
 latex/
 

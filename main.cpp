@@ -42,12 +42,10 @@
 #include <map>
 
 #include <sys/stat.h>
-#include <unistd.h>
-
 
 #include <string>
 
-#include <JetsonGPIO.h>
+#include "include/JetsonGPIO/include/JetsonGPIO.h"
 
 
 void BoostServerExample()
@@ -122,8 +120,9 @@ void JetsonGPIOExample()
         <GPIO id="GPIO18" pin="12" address="gpio79" name="I2S_4_SCLK" notes="" />
     */
 
-	std::list<int> output_pins = { 12, 15, 18, 19, 22, 26, 28, 29 };
-	GPIO::setmode(GPIO::BCM);
+
+	std::list<int> output_pins = { 7, 11, 12, 13, 15, 16, 18, 19, 21, 23, 22, 23, 24, 26, 29, 31, 32, 33, 35, 36, 37, 38, 40 };
+	GPIO::setmode(GPIO::BOARD);
 
     while (true)
     {

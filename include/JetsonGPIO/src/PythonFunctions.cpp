@@ -27,7 +27,7 @@ DEALINGS IN THE SOFTWARE.
 #include <sstream>
 #include <cctype>
 
-#include "private/PythonFunctions.h"
+#include "../include/PythonFunctions.h"
 
 using namespace std;
 

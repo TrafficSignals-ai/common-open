@@ -23,7 +23,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
-#include "private/gpio_event.h"
+#include "../include/gpio_event.h"
 
 #include <fcntl.h>
 #include <stdio.h>
@@ -39,7 +39,7 @@ DEALINGS IN THE SOFTWARE.
 #include <thread>
 #include <vector>
 
-#include "JetsonGPIO.h"
+#include "../include/JetsonGPIO.h"
 
 #define MAX_EPOLL_EVENTS 20
 #define READ_SIZE 10

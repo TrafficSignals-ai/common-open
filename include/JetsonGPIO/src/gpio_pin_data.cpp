@@ -35,9 +35,9 @@ DEALINGS IN THE SOFTWARE.
 #include <algorithm>
 #include <iterator>
 
-#include "JetsonGPIO.h"
-#include "private/gpio_pin_data.h"
-#include "private/PythonFunctions.h"
+#include "../include/JetsonGPIO.h"
+#include "../include/gpio_pin_data.h"
+#include "../include/PythonFunctions.h"
 
 
 using namespace GPIO;

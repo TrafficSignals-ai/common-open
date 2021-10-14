@@ -60,6 +60,16 @@ add_library(
     include/rapidxml-1.13/rapidxml_print.hpp
     include/rapidxml-1.13/rapidxml_utils.hpp
     include/rapidxml-1.13/rapidxml.hpp
+    include/JetsonGPIO/include/gpio_event.h
+    include/JetsonGPIO/include/gpio_pin_data.h
+    include/JetsonGPIO/include/JetsonGPIO.h
+    include/JetsonGPIO/include/Model.h
+    include/JetsonGPIO/include/PythonFunctions.h
+    include/JetsonGPIO/src/gpio_event.cpp
+    include/JetsonGPIO/src/gpio_pin_data.cpp
+    include/JetsonGPIO/src/JetsonGPIO.cpp
+    include/JetsonGPIO/src/PythonFunctions.cpp
+    include/JetsonGPIO/src/test.cpp
 )
 message("-- Created library.")
 
@@ -68,7 +78,6 @@ message("-- Created library.")
 add_executable(${PROJ_NAME} main.cpp)
 message(STATUS "Added executable.")
 
-target_link_libraries(${PROJECT_NAME} -lJetsonGPIO)
 target_link_libraries(${PROJECT_NAME} -Boost)
 target_link_libraries(${PROJECT_NAME} ${LIB_NAME} )
 message(STATUS "Linked other libraries.")

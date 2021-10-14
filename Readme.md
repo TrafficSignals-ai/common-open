@@ -27,17 +27,16 @@ sudo apt install gcc build-essential cmake pkg-config git
 sudo apt install libboost-all-dev 
 ```
 
-## Compile
+## Download 
 
-To download and compile to repository from source control, execute the following: 
+To download the repository from source control, execute the following: 
 
 ```Bash
 mkdir -p ~/src/TrafficSignals-ai
 cd ~/src/TrafficSignals-ai
 git clone https://github.com/TrafficSignals-ai/common-open.git
-cd common-open
-./compile.sh
 ```
+
 
 ## JetsonGPIO Installation
 
@@ -76,6 +75,14 @@ rules by running:
 sudo udevadm control --reload-rules && sudo udevadm trigger
 ```
 
+## Compile
+
+To compile the repository from source control, execute the following: 
+
+```Bash
+cd ~/src/TrafficSignals-ai/common-open
+./compile.sh    
+```
 
 ## Source Documentation 
 

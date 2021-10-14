@@ -40,12 +40,12 @@ DEALINGS IN THE SOFTWARE.
 #include <utility>
 #include <vector>
 
-#include "JetsonGPIO.h"
+#include "../include/JetsonGPIO.h"
 
-#include "private/Model.h"
-#include "private/PythonFunctions.h"
-#include "private/gpio_event.h"
-#include "private/gpio_pin_data.h"
+#include "../include/Model.h"
+#include "../include/PythonFunctions.h"
+#include "../include/gpio_event.h"
+#include "../include/gpio_pin_data.h"
 
 using namespace GPIO;
 using namespace std;

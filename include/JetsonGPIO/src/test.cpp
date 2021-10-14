@@ -30,7 +30,7 @@ DEALINGS IN THE SOFTWARE.
 #include <iostream>
 #include <thread>
 
-#include "JetsonGPIO.h"
+#include "../include/JetsonGPIO.h"
 
 using namespace std;
 

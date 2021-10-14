@@ -31,7 +31,7 @@ DEALINGS IN THE SOFTWARE.
 #include <vector>
 
 #include "JetsonGPIO.h"
-#include "private/Model.h"
+#include "Model.h"
 
 struct PinDefinition
 {
