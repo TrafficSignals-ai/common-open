@@ -37,44 +37,6 @@ cd ~/src/TrafficSignals-ai
 git clone https://github.com/TrafficSignals-ai/common-open.git
 ```
 
-
-## JetsonGPIO Installation
-
-The JetsonGPIO library requires additional installation steps prior to operating. Follow the instructions below. 
-
-Build it, and install it.
-```
-cd ~/src/TrafficSignals-ai/common-open/JetsonGPIO/build
-make all
-sudo make install
-```
-
-### Setting User Permissions
-
-In order to use the Jetson GPIO Library, the correct user permissions/groups must  
-be set first. Or you have to run your program with root permission.    
-
-Create a new gpio user group. Then add your user to the newly created group.  
-
-```Bash
-sudo groupadd -f -r gpio
-sudo usermod -a -G gpio [your_user_name]
-```
-
-Install custom udev rules by copying the 99-gpio.rules file into the rules.d  
-directory. The 99-gpio.rules file was copied from NVIDIA's official repository.  
-
-```Bash
-sudo cp ~/src/TrafficSignals-ai/common-open/JetsonGPIO/99-gpio.rules /etc/udev/rules.d/
-```
-
-For the new rule to take place, you either need to reboot or reload the udev
-rules by running:
-
-```Bash
-sudo udevadm control --reload-rules && sudo udevadm trigger
-```
-
 ## Compile
 
 To compile the repository from source control, execute the following: 
@@ -121,10 +83,3 @@ This implementation uses the licence option 2, the "2. The MIT License" permitte
 
 [Official Page](http://rapidxml.sourceforge.net/) - [Licence](rapidxml/licence.txt) - [Documentation](http://rapidxml.sourceforge.net/manual.html)
 
-### JetsonGPIO
-JetsonGPIO is an C++ port of the **NVIDIA's Jetson.GPIO Python library**(https://github.com/NVIDIA/jetson-gpio).    
-
-Jetson TX1, TX2, AGX Xavier, and Nano development boards contain a 40 pin GPIO header, similar to the 40 pin header in the Raspberry Pi. These GPIOs can be controlled for digital input and output using this library. The library provides almost same APIs as the Jetson.GPIO Python library.  
-
-
-[Official Page](https://github.com/pjueon/JetsonGPIO) - [Licence](JetsonGPIO/LICENSE.txt) - [Documentation](JetsonGPIO/README.md)

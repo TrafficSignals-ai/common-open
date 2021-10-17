@@ -294,7 +294,7 @@ private:
 
                 if (!socket.is_open())
                 {
-                    std::cout << "ServerTCP::sendMessages Connecton closed, removing index: " << i << std::endl;
+                    std::cout << "ServerTCP::sendMessages Connection closed, removing index: " << i << std::endl;
                     _connections.remove(*it);
                 }
             }
@@ -357,7 +357,7 @@ public:
     {
         _healthy = true;
         _port = port;
-        std::cout << "main::createServer initalised." << std::endl;
+        std::cout << "main::createServer initialised." << std::endl;
         _threadStart = std::thread(&ConnectionManager::Start, this);
         return;
     }
@@ -527,7 +527,7 @@ public:
 
         _threadMaintainConnection = std::thread(&ConnectionClient::MaintainConnection, this);
 
-        std::cout << "ConnectionClient::ConnectionClient Initalised." << std::endl;
+        std::cout << "ConnectionClient::ConnectionClient Initialised." << std::endl;
     }
 
     /*!
@@ -547,7 +547,7 @@ public:
         }
         clearGuard.unlock();
 
-        std::cout << "ConnectionClient::ConnectionClient distroyed." << std::endl;
+        std::cout << "ConnectionClient::ConnectionClient destroyed." << std::endl;
     }
 
     /*!
@@ -643,6 +643,77 @@ public:
 
                         fragment = "";
                     }
+
+                    if (leftOver.size() > 0)
+                    {
+                        _buffer.push(leftOver);
+                    }
+
+                    for (int i = 0; i < bufferSize; i++)
+                    {
+                        std::string message = _buffer.front();
+                        _buffer.pop();
+                        _buffer.push(message);
+                    }
+
+                }
+                else //Partial message received.
+                {
+                    //std::cout << "ConnectionClient::AwaitTag Partial Message Received." << std::endl;
+                    partialMessageReceived = true;
+                }
+
+                int bufferSize = _buffer.size();
+                processGuard.unlock();
+
+                if (!tagContent.empty())
+                {
+                    //std::cout << "ConnectionClient::AwaitTag Returning content." << std::endl;
+                    return tagContent;
+                }
+                else if (partialMessageReceived && (bufferSize < 5))
+                {
+                    //std::cout << "ConnectionClient::AwaitTag  Partial Message Received SLEEPING LONG." << std::endl;
+                    std::this_thread::sleep_for (std::chrono::milliseconds(10)); // awaiting end of tag to flush through
+                }
+                else if (partialMessageReceived)
+                {
+                    //std::cout << "ConnectionClient::AwaitTag  Partial Message Received SLEEPING SHORT." << std::endl;
+                    std::this_thread::sleep_for (std::chrono::milliseconds(5)); // awaiting end of tag to flush through
+                }
+            }
+            std::this_thread::sleep_for (std::chrono::milliseconds(200)); // nothing to process
+        }
+    }
+
+    std::string AwaitTag()
+    {
+        std::string fragment;
+
+        while (true)
+        {
+
+            while (!_buffer.empty())
+            {
+                bool partialMessageReceived = false;
+                std::string tagContent;
+
+                std::unique_lock<std::mutex> processGuard(_bufferMutex);
+
+                std::string front = _buffer.front();
+                _buffer.pop();
+
+                fragment = fragment + front;
+
+                size_t end = fragment.find("\r\n");
+
+                if (end != std::string::npos) //Extract out data, sort out buffer and return.
+                {
+                    tagContent = fragment.substr(0, end);
+                    end = end + 2;
+
+                    std::string leftOver = fragment.substr(end, (fragment.size() - end));
+                    int bufferSize = _buffer.size();
 
                     if (leftOver.size() > 0)
                     {

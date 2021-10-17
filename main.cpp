@@ -46,6 +46,7 @@
 
 #include "include/BOOST/ConnectionTCP.cpp"
 #include "include/BOOST/asyncClientTCP.cpp"
+#include "include/BOOST/asyncServerTCP.cpp"
 
 
 void BoostServerExample()
@@ -103,32 +104,35 @@ void BoostClientExample()
     }
 };
 
-int asycClientTCPExample(int argc, char* argv[])
+int asyncClientTCPManagerExample(int argc, char* argv[])
 {
+    std::cout << "Running asycClientTCPExample." << std::endl;    
+
     try
     {
         if (argc != 4)
         {
             std::cout << "Received: " << argv[0] << " " << argv[1] << "  " << argv[2] << "  " << argv[3] << std::endl;
-            std::cout << "Usage: console asycClientTCPExample <server> <port>" << std::endl;
+            std::cout << "Usage: console asyncClientTCPManager <server> <port>" << std::endl;
             std::cout << "Example:" << std::endl;
-            std::cout << "  console asycClientTCPExample localhost 8000" << std::endl;
+            std::cout << "  console asyncClientTCPManager localhost 8000" << std::endl;
             return 1;
         }
 
-        boost::asio::io_service io_service;
-        asyncClientTCP asyncClient(io_service, argv[2], argv[3]);
-        io_service.run(); //blocking
+        asyncClientTCPManager manager(argv[2], std::stoi(argv[3]));
+        std::cout << "asyncClientTCPManager Created. " << std::endl;
+        std::this_thread::sleep_for (std::chrono::seconds(5));
 
-        std::cout << "Failed to start." << std::endl;    
-
-        /*
         while (true)
         {
-            std::cout << "Received: " <<std::endl << asyncClient.ReceiveMessage() << std::endl;    
-            asyncClient.SendMessage("Thanks.");
+            std::cout << "asyncClientTCPManager Waiting for message.... " << std::endl;
+            std::string messageReceived = manager.receive();
+            std::cout << "asyncClientTCPManager Received: " << messageReceived << std::endl;
+            manager.send(messageReceived);
+            std::cout << "asyncClientTCPManager Returned echo to all: " << std::endl << messageReceived << std::endl;
         }
-        */
+
+        std::cout << "Failed to start." << std::endl;    
 
     }
     catch (std::exception& e)
@@ -139,21 +143,74 @@ int asycClientTCPExample(int argc, char* argv[])
     return 0;
 }
 
+
+int asycServerTCPManagerExample(int argc, char* argv[])
+{
+    std::cout << "Running asycServerTCPExample." << std::endl;    
+
+    try
+    {
+        if (argc != 3)
+        {
+            std::cout << "Received: " << argv[0] << " " << argv[1] << "  " << argv[2] << std::endl;
+            std::cout << "Usage: console asycServerTCP <port>" << std::endl;
+            std::cout << "Example:" << std::endl;
+            std::cout << "  console asycClientTCP 8000" << std::endl;
+            return 1;
+        }
+
+        asyncServerTCPManager manager(std::stoi(argv[2]));
+        std::cout << "asyncServerTCPManager Created. " << std::endl;
+        std::this_thread::sleep_for (std::chrono::seconds(5));
+
+        while (true)
+        {
+            std::cout << "asyncServerTCPManager Waiting for message.... " << std::endl;
+            std::string messageReceived = manager.receive();
+            std::cout << "asyncServerTCPManager Received: " << messageReceived << std::endl;
+            manager.send_all(messageReceived);
+            std::cout << "asyncServerTCPManager Returned echo to all: " << std::endl << messageReceived << std::endl;
+        }
+    }
+    catch (std::exception& e)
+    {
+        std::cout << "Exception: " << e.what() << "\n";
+    }
+
+    return 0;
+}
+
+
+int asycServerTCP_read()
+{
+    while(true)
+    {
+        
+    }
+}
+
 int main(int argc, char* argv[])
 {
     if (argc > 1)
     {
-        if (!strcmp(argv[1], "asycClientTCPExample"))        {
-            return asycClientTCPExample(argc, argv);
+        if (!strcmp(argv[1], "asyncClientTCPManager"))        {
+            return asyncClientTCPManagerExample(argc, argv);
+        }
+        else if (!strcmp(argv[1], "asycServerTCP"))        {
+            return asycServerTCPManagerExample(argc, argv);
         }
     }
+    else if (argc == 1)
+    {
+        char *array[4] = { "console", "asyncClientTCPManager", "localhost", "8000" };     
+        return asyncClientTCPManagerExample(4, array);
 
+
+        //return asycServerTCPExample(3, array);
+    }
 
     //BoostServerExample();
     //BoostClientExample();
     //JetsonGPIOExample();
-
-    
+   
 };
-
-
