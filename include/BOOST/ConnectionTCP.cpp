@@ -431,7 +431,7 @@ public:
 class ConnectionClient
 {
 private:
-    int _maxLength = 10240; //!< The ammount of bytes to receive at once. 
+    int _maxLength = 512; //!< The ammount of bytes to receive at once. 
     int _port; //!< The port number to connect to
     std::string _address; //!< The address to connect to
 
@@ -465,7 +465,17 @@ private:
                 {
                     char replyC[_maxLength];
                     boost::asio::read(s, boost::asio::buffer(replyC, _maxLength));
-                    std::string replyS(replyC);  
+                    //std::string replyS(replyC);  
+                    std::string replyS;
+
+                    for (char c : replyC)
+                    {
+                        if (c < 128)
+                        {
+                            replyS = replyS + c;
+                        }
+                    }
+                    
 
                     std::unique_lock<std::mutex> pushGuard(_bufferMutex);
                     _buffer.push(replyS);
